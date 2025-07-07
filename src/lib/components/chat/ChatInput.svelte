@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { createEventDispatcher, onMount } from "svelte";
+	import { createEventDispatcher, onMount, tick } from "svelte";
 
 	import HoverTooltip from "$lib/components/HoverTooltip.svelte";
 	import IconInternet from "$lib/components/icons/IconInternet.svelte";
@@ -23,6 +23,7 @@
 	import { captureScreen } from "$lib/utils/screenshot";
 	import IconScreenshot from "../icons/IconScreenshot.svelte";
 	import { loginModalOpen } from "$lib/stores/loginModal";
+
 	import { isVirtualKeyboard } from "$lib/utils/isVirtualKeyboard";
 	interface Props {
 		files?: File[];
@@ -108,6 +109,8 @@
 			value.trim() !== ""
 		) {
 			event.preventDefault();
+			adjustTextareaHeight();
+			tick();
 			dispatch("submit");
 		}
 	}

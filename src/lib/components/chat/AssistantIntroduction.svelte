@@ -15,9 +15,11 @@
 	import CarbonTools from "~icons/carbon/tools";
 
 	import { share } from "$lib/utils/share";
-	import { publicConfig } from "$lib/utils/PublicConfig.svelte";
+	import { usePublicConfig } from "$lib/utils/PublicConfig.svelte";
 
 	import { page } from "$app/state";
+
+	const publicConfig = usePublicConfig();
 
 	interface Props {
 		models: Model[];
